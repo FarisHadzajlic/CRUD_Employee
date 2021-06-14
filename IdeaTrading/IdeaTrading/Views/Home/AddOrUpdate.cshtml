@@ -1,0 +1,58 @@
+﻿@model IdeaTrading.Models.User
+
+@{
+    ViewBag.Title = "Add Or Update";
+}
+
+<h2>Add/Update User</h2>
+<br />
+
+@using (Html.BeginForm("AddOrUpdate", "Home", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.HiddenFor(model => model.ID)
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, "First Name", new { @class = "control-label" })
+        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, "Last Name", new { @class = "control-label" })
+        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, new { @class = "control-label" })
+        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.City, new { @class = "control-label" })
+        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.City)
+    </div>
+    <div class="form-group">
+        @if (Model.DateOfEmployment == DateTime.MinValue)
+        {
+            Model.DateOfEmployment = DateTime.Now;
+        }
+        @Html.LabelFor(model => model.DateOfEmployment, "Date of Employment", new { @class = "control-label" })
+        @Html.EditorFor(model => model.DateOfEmployment, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
+        @Html.ValidationMessageFor(model => model.DateOfEmployment)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Position, new { @class = "control-label" })
+        @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Position)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone, new { @class = "control-label" })
+        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @id = "phone" } })
+        @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        <input type="reset" value="Reset" class="btn" />
+    </div>
+}
+
